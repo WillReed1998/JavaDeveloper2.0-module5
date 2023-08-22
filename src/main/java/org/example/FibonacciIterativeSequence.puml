@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+User --> FibonacciIterative:fibonacciIterative(int n)
+
+FibonacciIterative -> FibonacciIterative : check n <= 1
+alt n <= 1
+    FibonacciIterative --> User: throw new IllegalArgumentException
+    else n <= 1
+    FibonacciIterative --> User:return n
+    else n > 1
+    FibonacciIterative -> FibonacciIterative : initialize loop till n-1
+    FibonacciIterative -> FibonacciIterative : fibonacciIterative = previousPrevious + previous
+    FibonacciIterative -> FibonacciIterative : make previousPrevious = previous
+    FibonacciIterative --> User:return fibonacciIterative
+    end
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+User --> FibonacciDP:activate
+FibonacciDP -> FibonacciDP : create Map<Integer, Long> memo
+
+User --> FibonacciDP:fibonacciDP(int n)
+
+FibonacciDP -> FibonacciDP : check conditions
+
+alt n <= 1
+    FibonacciDP --> User: return n
+
+else n > 1
+
+alt memo.containsKey(n)
+FibonacciDP --> User: return memo.get(n)
+end
+
+FibonacciDP --> FibonacciDP: Calculate fib = fibonacci(n - 1) + fibonacci(n - 2)
+        FibonacciDP -> FibonacciDP: Put fib in memo[n]
+        FibonacciDP --> User: return fib
+end
+
+@enduml
